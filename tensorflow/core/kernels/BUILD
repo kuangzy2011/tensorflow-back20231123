@@ -8065,6 +8065,7 @@ tf_kernel_library(
     deps = [
         "//tensorflow/core:framework",
         "//tensorflow/core:lib",
+        "//tensorflow/core/kernels:tf_sampling"
     ],
 )
 
