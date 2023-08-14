@@ -24,7 +24,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 
 } // namespace farthestpointsample
 
-TfLiteRegistration* RegisterFarthestPointSample() {
+TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
