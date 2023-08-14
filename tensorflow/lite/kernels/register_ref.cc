@@ -29,6 +29,7 @@ TfLiteRegistration* Register_NUMERIC_VERIFY_REF();
 TfLiteRegistration* Register_AUDIO_SPECTROGRAM();
 TfLiteRegistration* Register_MFCC();
 TfLiteRegistration* Register_DETECTION_POSTPROCESS();
+TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
 
 }  // namespace custom
 
