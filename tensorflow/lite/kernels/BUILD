@@ -743,11 +743,15 @@ BUILTIN_KERNEL_DEPS = [
 cc_library(
     name = "builtin_op_kernels",
     srcs = BUILTIN_KERNEL_SRCS + [
-        "tf_sampling.cc"
+        "tf_sampling.cc",
+        "tf_grouping.cc",
+        "tf_interpolate.cc"
     ],
     hdrs = [
         "dequantize.h",
-        "tf_sampling.h"
+        "tf_sampling.h",
+        "tf_grouping.h",
+        "tf_interpolate.h"
     ],
     compatible_with = get_compatible_with_portable(),
     copts = tflite_copts() + tf_opts_nortti_if_android() + EXTRA_EIGEN_COPTS,
