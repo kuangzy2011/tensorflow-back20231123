@@ -34,6 +34,7 @@ TfLiteRegistration* Register_QUERY_BALL_POINT();
 TfLiteRegistration* Register_GROUP_POINT();
 TfLiteRegistration* Register_THREE_NN();
 TfLiteRegistration* Register_THREE_INTERPOLATE();
+TfLiteRegistration* Register_KNN_POINT();
 
 }  // namespace custom
 
@@ -382,6 +383,7 @@ BuiltinOpResolver::BuiltinOpResolver() {
   AddCustom("GroupPoint", tflite::ops::custom::Register_GROUP_POINT());
   AddCustom("ThreeNN", tflite::ops::custom::Register_THREE_NN());
   AddCustom("ThreeInterpolate", tflite::ops::custom::Register_THREE_INTERPOLATE());
+  AddCustom("KnnPoint", tflite::ops::custom::Register_KNN_POINT());
 
   // By definition, all of the ops added above are not user-defined ops,
   // since they are supported by BuiltinOpResolver.
