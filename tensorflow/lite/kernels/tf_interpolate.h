@@ -9,6 +9,7 @@ namespace custom {
 
 TfLiteRegistration* Register_THREE_NN();
 TfLiteRegistration* Register_THREE_INTERPOLATE();
+TfLiteRegistration* Register_KNN_POINT();
 
 }  // namespace custom
 }  // namespace ops
