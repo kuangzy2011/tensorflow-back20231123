@@ -33,6 +33,8 @@ TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
 TfLiteRegistration* Register_GATHER_POINT();
 TfLiteRegistration* Register_QUERY_BALL_POINT();
 TfLiteRegistration* Register_GROUP_POINT();
+TfLiteRegistration* Register_THREE_NN();
+TfLiteRegistration* Register_THREE_INTERPOLATE();
 
 }  // namespace custom
 
@@ -551,6 +553,8 @@ BuiltinRefOpResolver::BuiltinRefOpResolver() {
   AddCustom("GatherPoint", tflite::ops::custom::Register_GATHER_POINT());
   AddCustom("QueryBallPoint", tflite::ops::custom::Register_QUERY_BALL_POINT());
   AddCustom("GroupPoint", tflite::ops::custom::Register_GROUP_POINT());
+  AddCustom("ThreeNN", tflite::ops::custom::Register_THREE_NN());
+  AddCustom("ThreeInterpolate", tflite::ops::custom::Register_THREE_INTERPOLATE());
 
 }
 
