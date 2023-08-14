@@ -7,8 +7,8 @@
 namespace tflite {
 namespace ops {
 namespace custom {
-namespace threenn {
 
+namespace threenn {
 constexpr int kDataInputTensor = 0;
 constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
@@ -20,13 +20,11 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   return kTfLiteOk;
 }
-
-
 } // namespace threenn
 
 
-namespace threeinterpolate {
 
+namespace knnpoint {
 constexpr int kDataInputTensor = 0;
 constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
@@ -38,9 +36,26 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   return kTfLiteOk;
 }
+} // namespace knnpoint
 
 
+
+
+namespace threeinterpolate {
+constexpr int kDataInputTensor = 0;
+constexpr int kIndicesTensor = 1;
+constexpr int kOutputTensor = 0;
+
+TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  return kTfLiteOk;
+}
+
+TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  return kTfLiteOk;
+}
 } // namespace threeinterpolate
+
+
 
 TfLiteRegistration* Register_THREE_NN() {
   static TfLiteRegistration reg = {
@@ -58,6 +73,16 @@ TfLiteRegistration* Register_THREE_INTERPOLATE() {
       /*.free=*/nullptr,
       /*.prepare=*/threeinterpolate::Prepare,
       /*.invoke=*/threeinterpolate::Eval
+  };
+  return &reg;
+}
+
+TfLiteRegistration* Register_KNN_POINT() {
+  static TfLiteRegistration reg = {
+      /*.init=*/nullptr,
+      /*.free=*/nullptr,
+      /*.prepare=*/knnpoint::Prepare,
+      /*.invoke=*/knnpoint::Eval
   };
   return &reg;
 }
