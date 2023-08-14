@@ -8,6 +8,7 @@ namespace ops {
 namespace custom {
 
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
+TfLiteRegistration* Register_GATHER_POINT();
 
 }  // namespace custom
 }  // namespace ops
