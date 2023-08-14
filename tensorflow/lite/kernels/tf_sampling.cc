@@ -24,12 +24,40 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 
 } // namespace farthestpointsample
 
+
+namespace gatherpoint {
+
+constexpr int kDataInputTensor = 0;
+constexpr int kIndicesTensor = 1;
+constexpr int kOutputTensor = 0;
+
+TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  return kTfLiteOk;
+}
+
+TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  return kTfLiteOk;
+}
+
+
+} // namespace gatherpoint
+
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
       /*.prepare=*/farthestpointsample::Prepare,
       /*.invoke=*/farthestpointsample::Eval
+  };
+  return &reg;
+}
+
+TfLiteRegistration* Register_GATHER_POINT() {
+  static TfLiteRegistration reg = {
+      /*.init=*/nullptr,
+      /*.free=*/nullptr,
+      /*.prepare=*/gatherpoint::Prepare,
+      /*.invoke=*/gatherpoint::Eval
   };
   return &reg;
 }
