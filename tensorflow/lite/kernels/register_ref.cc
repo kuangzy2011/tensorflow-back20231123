@@ -543,6 +543,8 @@ BuiltinRefOpResolver::BuiltinRefOpResolver() {
             tflite::ops::custom::Register_AUDIO_SPECTROGRAM());
   AddCustom("TFLite_Detection_PostProcess",
             tflite::ops::custom::Register_DETECTION_POSTPROCESS());
+  AddCustom("FarthestPointSample", tflite::ops::custom::Register_FARTHEST_POINT_SAMPLE());
+
 }
 
 }  // namespace builtin
