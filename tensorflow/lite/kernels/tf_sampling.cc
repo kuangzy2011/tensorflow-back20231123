@@ -15,6 +15,8 @@ constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
+  TF_LITE_KERNEL_LOG(context, "NumberInputs %d, NumberOutputs %d", tflite::NumInputs(node), tflite::NumOutputs(node));
+
   TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 2);
   TF_LITE_ENSURE_EQ(context, tflite::NumOutputs(node), 1);
 
