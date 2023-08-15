@@ -14,7 +14,22 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
+  TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 2);
+  TF_LITE_ENSURE_EQ(context, tflite::NumOutputs(node), 1);
+
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
+  const TfLiteTensor* input_npoint = tflite::GetInput(context, node, 1);
+  TF_LITE_ENSURE(context, input_npoint != nullptr);
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  const Float* data_inp = tflite::GetTensorData<Float>(input_inp);
+  const Float* data_npoint = tflite::GetTensorData<Float>(input_npoint);
+  Float* data_output = tflite::GetTensorData<Float>(output);
+  
+  TF_LITE_KERNEL_LOG(context, "data of npoint: %f", data_npoint[0]);
   TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s", TfLiteTypeGetName(output->type));
   //return kTfLiteOk;
   return kTfLiteError;
