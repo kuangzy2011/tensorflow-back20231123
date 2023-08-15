@@ -27,7 +27,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 
   const float* data_inp = tflite::GetTensorData<float>(input_inp);
   const float* data_npoint = tflite::GetTensorData<float>(input_npoint);
-  float* data_output = tflite::GetTensorData<Float>(output);
+  float* data_output = tflite::GetTensorData<float>(output);
   
   TF_LITE_KERNEL_LOG(context, "data of npoint: %f", data_npoint[0]);
   TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s", TfLiteTypeGetName(output->type));
