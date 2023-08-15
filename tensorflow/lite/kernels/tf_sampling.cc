@@ -14,10 +14,14 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s", TfLiteTypeGetName(output->type));
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Eval output: %s", TfLiteTypeGetName(output->type));
   return kTfLiteOk;
 }
 
