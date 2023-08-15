@@ -16,16 +16,16 @@ constexpr int kOutputTensor = 0;
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
   TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s", TfLiteTypeGetName(output->type));
-  return kTfLiteOk;
+  //return kTfLiteOk;
+  return kTfLiteError;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
   TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Eval output: %s", TfLiteTypeGetName(output->type));
-  return kTfLiteOk;
+  //return kTfLiteOk;
+  return kTfLiteError;
 }
-
-
 } // namespace farthestpointsample
 
 
@@ -42,9 +42,9 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   return kTfLiteOk;
 }
-
-
 } // namespace gatherpoint
+
+
 
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   static TfLiteRegistration reg = {
