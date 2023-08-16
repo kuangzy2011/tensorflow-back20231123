@@ -26,6 +26,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   //TF_LITE_ENSURE(context, input_npoint != nullptr);
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
   TF_LITE_ENSURE(context, output != nullptr);
+  TF_LITE_KERNEL_LOG(context, "Number Elements %d\n", NumElements(input_inp));
 
   const float* data_inp = tflite::GetTensorData<float>(input_inp);
   //const float* data_npoint = tflite::GetTensorData<float>(input_npoint);
