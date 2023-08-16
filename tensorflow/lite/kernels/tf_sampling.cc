@@ -53,8 +53,8 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 
   int i = 0;
   for(i = 0; i < 3; i++) {
-    const float3 point = Read3DLandmarkXYZ(data_inp, i);
-    TF_LITE_KERNEL_LOG(context, "data of inp index %d: {x: %.6f, y: %.6f, z: %.6f}\n", i, point.x, point.y, point.z);
+    //const float3 point = Read3DLandmarkXYZ(data_inp, i);
+    //TF_LITE_KERNEL_LOG(context, "data of inp index %d: {x: %.6f, y: %.6f, z: %.6f}\n", i, point.x, point.y, point.z);
   }
   
   //return kTfLiteOk;
