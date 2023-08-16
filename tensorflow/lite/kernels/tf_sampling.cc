@@ -33,7 +33,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   float* data_output = tflite::GetTensorData<float>(output);
   
   //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %d, [1] %d\n", data_inp[0], data_inp[1]);
-  TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s\n", TfLiteTypeGetName(output->type));
+  TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare input_inp: %s\n", TfLiteTypeGetName(input_inp->type));
   //return kTfLiteOk;
   return kTfLiteError;
 }
