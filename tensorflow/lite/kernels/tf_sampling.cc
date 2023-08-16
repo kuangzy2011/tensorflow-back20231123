@@ -26,13 +26,13 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   //TF_LITE_ENSURE(context, input_npoint != nullptr);
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
   TF_LITE_ENSURE(context, output != nullptr);
-  //TF_LITE_KERNEL_LOG(context, "Number Elements %d\n", NumElements(input_inp));
+  TF_LITE_KERNEL_LOG(context, "Number Elements %ld\n", NumElements(input_inp));
 
   const float* data_inp = tflite::GetTensorData<float>(input_inp);
   //const float* data_npoint = tflite::GetTensorData<float>(input_npoint);
   float* data_output = tflite::GetTensorData<float>(output);
   
-  TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f, [1] %f\n", data_inp[0], data_inp[1]);
+  //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f, [1] %f\n", data_inp[0], data_inp[1]);
   TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Prepare output: %s\n", TfLiteTypeGetName(output->type));
   //return kTfLiteOk;
   return kTfLiteError;
