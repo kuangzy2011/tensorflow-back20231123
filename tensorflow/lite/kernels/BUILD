@@ -771,6 +771,7 @@ cc_library(
         "//tensorflow/lite:string",
         "@farmhash_archive//:farmhash",
         "//third_party/fft2d:fft2d_headers",
+        "//tensorflow/lite/delegates/gpu:api"
     ],
 )
 
