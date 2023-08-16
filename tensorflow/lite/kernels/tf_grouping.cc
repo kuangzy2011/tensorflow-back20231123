@@ -14,10 +14,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "queryballpoint Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "queryballpoint Eval ------------------\n");
   return kTfLiteOk;
 }
 
@@ -32,10 +34,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "grouppoint Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "grouppoint Eval ------------------\n");
   return kTfLiteOk;
 }
 
