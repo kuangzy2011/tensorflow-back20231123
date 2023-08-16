@@ -771,7 +771,12 @@ cc_library(
         "//tensorflow/lite:string",
         "@farmhash_archive//:farmhash",
         "//third_party/fft2d:fft2d_headers",
-        "//tensorflow/lite/delegates/gpu:api"
+        "//tensorflow/lite/delegates/gpu/common:operation_parser",
+        "//tensorflow/lite/delegates/gpu/common:shape",
+        "//tensorflow/lite/delegates/gpu/common:status",
+        "//tensorflow/lite/delegates/gpu/common:tensor",
+        "//tensorflow/lite/delegates/gpu/common:types",
+        "@com_google_absl//absl/types:any"
     ],
 )
 
