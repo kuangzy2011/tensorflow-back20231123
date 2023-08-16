@@ -13,6 +13,16 @@ constexpr int kDataInputTensor = 0;
 constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
+using ::tflite::gpu::float3;
+
+float3 Read3DLandmarkXYZ(const float* data, int idx) {
+  float3 result;
+  result.x = data[idx * 3];
+  result.y = data[idx * 3 + 1];
+  result.z = data[idx * 3 + 2];
+  return result;
+}
+
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   
   //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
@@ -23,6 +33,11 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 
   
   TF_LITE_KERNEL_LOG(context, "NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), NumDimensions(input_inp));
+  TF_LITE_KERNEL_LOG(context, "input_inp dimensions: [0] %d, [1] %d, [2] %d\n", input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+
+  const RuntimeShape input_shape = GetTensorShape(input_inp)
+  TF_LITE_KERNEL_LOG(context, "input_inp DimensionsCount %d, dimensions: [0] %d, [1] %d, [2] %d\n", input_shape.DimensionsCount(), input_shape.Dims(0), input_shape.Dims(1), input_shape.Dims(2));
+
   TF_LITE_KERNEL_LOG(context, "datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
 
   //TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 1);
@@ -32,6 +47,13 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   float* data_output = tflite::GetTensorData<float>(output);
   
   //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %.6f, [1] %.6f, [2] %.6f, [3] %.6f, [4] %.6f, [5] %.6f\n", data_inp[0], data_inp[1], data_inp[2], data_inp[3], data_inp[4], data_inp[5]);
+
+  int i = 0;
+  for(i = 0; i < 3; i++) {
+    const float3 point = Read3DLandmarkXYZ(data_inp, i);
+    TF_LITE_KERNEL_LOG(context, "data of inp index %d: {x: %.6f, y: %.6f, z: %.6f}\n", i, point.x, point.y, point.z);
+  }
+  
   //return kTfLiteOk;
   return kTfLiteError;
 }
