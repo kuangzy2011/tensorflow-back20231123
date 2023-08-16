@@ -14,10 +14,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "threenn Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "threenn Eval ------------------\n");
   return kTfLiteOk;
 }
 } // namespace threenn
@@ -30,10 +32,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "knnpoint Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "knnpoint Eval ------------------\n");
   return kTfLiteOk;
 }
 } // namespace knnpoint
@@ -47,10 +51,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "threeinterpolate Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "threeinterpolate Eval ------------------\n");
   return kTfLiteOk;
 }
 } // namespace threeinterpolate
