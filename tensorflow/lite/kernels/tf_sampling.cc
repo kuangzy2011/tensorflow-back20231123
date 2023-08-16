@@ -2,6 +2,8 @@
 
 #include "tensorflow/lite/kernels/internal/common.h"
 #include "tensorflow/lite/kernels/internal/tensor.h"
+#include "tensorflow/lite/delegates/gpu/common/types.h"
+
 #include "tensorflow/lite/kernels/padding.h"
 
 namespace tflite {
