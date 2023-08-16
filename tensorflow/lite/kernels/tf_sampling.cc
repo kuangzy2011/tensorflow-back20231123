@@ -26,6 +26,7 @@ float3 Read3DLandmarkXYZ(const float* data, int idx) {
 }
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "farthestpointsample Prepare ------------------\n");
   
   //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
   const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
@@ -61,8 +62,8 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "farthestpointsample Eval ------------------\n");
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
-  TF_LITE_KERNEL_LOG(context, "datatype for farthestpointsample Eval output: %s\n", TfLiteTypeGetName(output->type));
   //return kTfLiteOk;
   return kTfLiteError;
 }
@@ -76,10 +77,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "gatherpoint Prepare ------------------\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
+  TF_LITE_KERNEL_LOG(context, "gatherpoint Eval ------------------\n");
   return kTfLiteOk;
 }
 } // namespace gatherpoint
