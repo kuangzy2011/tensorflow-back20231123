@@ -96,12 +96,12 @@ constexpr int kIndicesTensor = 1;
 constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
-  TF_LITE_KERNEL_LOG(context, "gatherpoint Prepare ------------------\n");
+  TF_LITE_KERNEL_LOG(context, "[debug][gatherpoint][Prepare] ------------------1\n");
   return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
-  TF_LITE_KERNEL_LOG(context, "gatherpoint Eval ------------------\n");
+  TF_LITE_KERNEL_LOG(context, "[debug][gatherpoint][Eval] ------------------1\n");
   return kTfLiteOk;
 }
 } // namespace gatherpoint
