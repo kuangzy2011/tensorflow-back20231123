@@ -59,13 +59,30 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
     TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] -  dims %d: %d\n", input_inp->dims->data[i]);
   }
   
-  //return kTfLiteOk;
-  return kTfLiteError;
+  return kTfLiteOk;
 }
 
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
-  TF_LITE_KERNEL_LOG(context, "farthestpointsample Eval ------------------\n");
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Eval] ------------------1\n");
+  
+  //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
   TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  const RuntimeShape input_shape = GetTensorShape(input_inp);
+
+  //TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 1);
+  //TF_LITE_ENSURE_EQ(context, tflite::NumOutputs(node), 1);
+
+  const float* data_inp = tflite::GetTensorData<float>(input_inp);
+  float* data_output = tflite::GetTensorData<float>(output);
+  
+  TF_LITE_KERNEL_LOG(context, "data of inp: [0] %.6f, [1] %.6f, [2] %.6f, [3] %.6f, [4] %.6f, [5] %.6f\n", data_inp[0], data_inp[1], data_inp[2], data_inp[3], data_inp[4], data_inp[5]);
+  //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f\n", data_inp[0]);
+
+  
   //return kTfLiteOk;
   return kTfLiteError;
 }
