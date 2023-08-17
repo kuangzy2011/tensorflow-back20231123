@@ -15,6 +15,17 @@ constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_KERNEL_LOG(context, "[debug][threenn][Prepare] ------------------1\n");
+  
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  
+  TF_LITE_KERNEL_LOG(context, "[debug][threenn][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), 
+    NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+  TF_LITE_KERNEL_LOG(context, "[debug][threenn][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+
   return kTfLiteOk;
 }
 
@@ -33,6 +44,17 @@ constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_KERNEL_LOG(context, "[debug][knnpoint][Prepare] ------------------1\n");
+
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  
+  TF_LITE_KERNEL_LOG(context, "[debug][knnpoint][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), 
+    NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+  TF_LITE_KERNEL_LOG(context, "[debug][knnpoint][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+  
   return kTfLiteOk;
 }
 
@@ -52,6 +74,17 @@ constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_KERNEL_LOG(context, "[debug][threeinterpolate][Prepare] ------------------1\n");
+
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  
+  TF_LITE_KERNEL_LOG(context, "[debug][threeinterpolate][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), 
+    NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+  TF_LITE_KERNEL_LOG(context, "[debug][threeinterpolate][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+  
   return kTfLiteOk;
 }
 
