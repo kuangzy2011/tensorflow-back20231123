@@ -35,13 +35,13 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_ENSURE(context, output != nullptr);
 
   
-  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), NumDimensions(input_inp));
-  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - input_inp dimensions: [0] %d, [1] %d, [2] %d\n", input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
-
-  const RuntimeShape input_shape = GetTensorShape(input_inp);
-  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - input_inp DimensionsCount %d, dimensions: [0] %d, [1] %d, [2] %d\n", input_shape.DimensionsCount(), input_shape.Dims(0), input_shape.Dims(1), input_shape.Dims(2));
-
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), 
+    NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
   TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+
+  //const RuntimeShape input_shape = GetTensorShape(input_inp);
+  //TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - input_inp DimensionsCount %d, dimensions: [0] %d, [1] %d, [2] %d\n", input_shape.DimensionsCount(), input_shape.Dims(0), input_shape.Dims(1), input_shape.Dims(2));
+
 
   //TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 1);
   //TF_LITE_ENSURE_EQ(context, tflite::NumOutputs(node), 1);
@@ -83,8 +83,8 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f\n", data_inp[0]);
 
   
-  return kTfLiteOk;
-  //return kTfLiteError;
+  //return kTfLiteOk;
+  return kTfLiteError;
 }
 } // namespace farthestpointsample
 
@@ -97,6 +97,18 @@ constexpr int kOutputTensor = 0;
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_KERNEL_LOG(context, "[debug][gatherpoint][Prepare] ------------------1\n");
+  //farthest_point_sample(inp, npoint)， 2 inputs and 1 output
+  
+  const TfLiteTensor* input_inp = tflite::GetInput(context, node, 0);
+  TF_LITE_ENSURE(context, input_inp != nullptr);
+  TfLiteTensor* output = tflite::GetOutput(context, node, 0);
+  TF_LITE_ENSURE(context, output != nullptr);
+
+  
+  TF_LITE_KERNEL_LOG(context, "[debug][gatherpoint][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), 
+    NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+  TF_LITE_KERNEL_LOG(context, "[debug][gatherpoint][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+  
   return kTfLiteOk;
 }
 
