@@ -83,8 +83,8 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f\n", data_inp[0]);
 
   
-  //return kTfLiteOk;
-  return kTfLiteError;
+  return kTfLiteOk;
+  //return kTfLiteError;
 }
 } // namespace farthestpointsample
 
