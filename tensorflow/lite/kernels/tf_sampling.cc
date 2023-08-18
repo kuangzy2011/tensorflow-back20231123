@@ -82,9 +82,9 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Eval] - data of inp: [0] %.6f, [1] %.6f, [2] %.6f, [3] %.6f, [4] %.6f, [5] %.6f\n", data_inp[0], data_inp[1], data_inp[2], data_inp[3], data_inp[4], data_inp[5]);
   //TF_LITE_KERNEL_LOG(context, "data of inp: [0] %f\n", data_inp[0]);
 
-  for(int i = 0; i < 2; i++) {
+  for(int i = 0; i < 6; i++) {
     float3 point = getPointXYZ(data_inp, i);
-    TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Eval] - point[%d] {x: %.6f, y: %.6f, z: %.6f}\n", point.x, point.y, point.z);
+    TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Eval] - point[%d] {x: %.6f, y: %.6f, z: %.6f}\n", i, point.x, point.y, point.z);
   }
   
   TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Eval] - custom_initial_data_size: %d\n", node->custom_initial_data_size);
