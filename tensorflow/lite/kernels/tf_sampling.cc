@@ -26,7 +26,7 @@ float3 getPointXYZ(const float* data, int idx) {
 }
 
 TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
-  //TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] ------------------1\n");
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] ------------------1\n");
   TF_LITE_ENSURE_EQ(context, tflite::NumInputs(node), 1);//1 input
   TF_LITE_ENSURE_EQ(context, tflite::NumOutputs(node), 1);//1 output
   
@@ -40,10 +40,11 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   const RuntimeShape input_shape = GetTensorShape(input_inp);
   TF_LITE_ENSURE_EQ(context, input_shape.Dims(2), 3);//the third shape is 3
 
-  /*
-  //TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
-  //TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - NumberInputs %d, NumberOutputs %d, input number elements %ld, number dimensions %d (%d, %d, %d)\n", tflite::NumInputs(node), tflite::NumOutputs(node), NumElements(input_inp), NumDimensions(input_inp), input_inp->dims->data[0], input_inp->dims->data[1], input_inp->dims->data[2]);
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - datatype input_inp: %s, output %s\n", TfLiteTypeGetName(input_inp->type), TfLiteTypeGetName(output->type));
+  TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - NumIntermediates %d, NumberTemporaries %d\n", tflite::NumIntermediates(node), node->temporaries->size);
 
+  /*
   //const RuntimeShape input_shape = GetTensorShape(input_inp);
   //TF_LITE_KERNEL_LOG(context, "[debug][farthestpointsample][Prepare] - input_inp DimensionsCount %d, dimensions: [0] %d, [1] %d, [2] %d\n", input_shape.DimensionsCount(), input_shape.Dims(0), input_shape.Dims(1), input_shape.Dims(2));
 
