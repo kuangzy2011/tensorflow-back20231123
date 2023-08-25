@@ -91,8 +91,8 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 
   
   
-  //return kTfLiteOk;
-  return kTfLiteError;
+  return kTfLiteOk;
+  //return kTfLiteError;
 }
 } // namespace farthestpointsample
 
