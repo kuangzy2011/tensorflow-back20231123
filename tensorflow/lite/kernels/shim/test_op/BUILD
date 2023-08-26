@@ -152,4 +152,28 @@ tf_cc_test(
     ],
 )
 
+
+cc_library(
+    name = "sampling_op",
+    hdrs = ["sampling_op.h"],
+    deps = [
+        "//tensorflow/lite/kernels/shim:op_kernel",
+        "//tensorflow/lite/kernels/shim:status_macros",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/strings",
+    ],
+)
+
+cc_library(
+    name = "sampling_tflite_op",
+    srcs = ["sampling_tflite_op.cc"],
+    hdrs = ["sampling_tflite_op.h"],
+    deps = [
+        ":sampling_op",
+        "//tensorflow/lite:mutable_op_resolver",
+        "//tensorflow/lite/core/c:common",
+        "//tensorflow/lite/kernels/shim:tflite_op_shim",
+    ],
+)
+
 tflite_portable_test_suite()
