@@ -26,10 +26,10 @@ namespace custom {
 void AddFarthestPointSample(MutableOpResolver* resolver);
 
 // Creates and returns the op kernel
-TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE_OP();
+TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
 
 // The name of the op
-const char* OpName_FARTHEST_POINT_SAMPLE_OP();
+const char* OpName_FARTHEST_POINT_SAMPLE();
 
 }  // namespace custom
 }  // namespace ops
