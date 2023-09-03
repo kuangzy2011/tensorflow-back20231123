@@ -22,15 +22,15 @@ namespace tflite {
 namespace ops {
 namespace custom {
 
-using OpKernel = ::tflite::shim::TfLiteOpKernel<tflite::shim::FarthestPointSampleOp>;
+using OpKernel = ::tflite::shim::TfLiteOpKernel<tflite::shim::FarthestPointSample>;
 
-void AddFarthestPointSampleOp(MutableOpResolver* resolver) { OpKernel::Add(resolver); }
+void AddFarthestPointSample(MutableOpResolver* resolver) { OpKernel::Add(resolver); }
 
-TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE_OP() {
+TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   return OpKernel::GetTfLiteRegistration();
 }
 
-const char* OpName_FARTHEST_POINT_SAMPLE_OP() { return OpKernel::OpName(); }
+const char* OpName_FARTHEST_POINT_SAMPLE() { return OpKernel::OpName(); }
 
 }  // namespace custom
 }  // namespace ops
