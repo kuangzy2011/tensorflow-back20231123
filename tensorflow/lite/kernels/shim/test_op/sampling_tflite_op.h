@@ -22,8 +22,8 @@ namespace tflite {
 namespace ops {
 namespace custom {
 
-// Add FarthestPointSampleOp to the resolver
-void AddFarthestPointSampleOp(MutableOpResolver* resolver);
+// Add FarthestPointSample to the resolver
+void AddFarthestPointSample(MutableOpResolver* resolver);
 
 // Creates and returns the op kernel
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE_OP();
