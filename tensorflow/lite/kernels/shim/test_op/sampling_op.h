@@ -33,7 +33,7 @@ namespace shim {
 // See the kDoc member for documentation.
 
 template <Runtime Rt>
-class FarthestPointSampleOp : public OpKernelShim<FarthestPointSampleOp, Rt> {
+class FarthestPointSample : public OpKernelShim<FarthestPointSample, Rt> {
  protected:
   enum Attrs { kAttr0 = 0 };
   enum Inputs { kInput0 = 0 };
@@ -45,11 +45,11 @@ class FarthestPointSampleOp : public OpKernelShim<FarthestPointSampleOp, Rt> {
   static constexpr char kAttrName[] = "npoint";
 
  public:
-  using typename OpKernelShim<FarthestPointSampleOp, Rt>::InitContext;
-  using typename OpKernelShim<FarthestPointSampleOp, Rt>::InvokeContext;
-  using typename OpKernelShim<FarthestPointSampleOp, Rt>::ShapeInferenceContext;
+  using typename OpKernelShim<FarthestPointSample, Rt>::InitContext;
+  using typename OpKernelShim<FarthestPointSample, Rt>::InvokeContext;
+  using typename OpKernelShim<FarthestPointSample, Rt>::ShapeInferenceContext;
 
-  FarthestPointSampleOp() = default;
+  FarthestPointSample() = default;
   static constexpr char kOpName[] = "FarthestPointSample";
   static constexpr char kDoc[] = R"doc(
 Description:
