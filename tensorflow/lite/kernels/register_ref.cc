@@ -30,7 +30,7 @@ TfLiteRegistration* Register_AUDIO_SPECTROGRAM();
 TfLiteRegistration* Register_MFCC();
 TfLiteRegistration* Register_DETECTION_POSTPROCESS();
 
-TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
+#TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
 
 TfLiteRegistration* Register_GATHER_POINT();
 TfLiteRegistration* Register_QUERY_BALL_POINT();
@@ -553,7 +553,7 @@ BuiltinRefOpResolver::BuiltinRefOpResolver() {
   AddCustom("TFLite_Detection_PostProcess",
             tflite::ops::custom::Register_DETECTION_POSTPROCESS());
   
-  AddCustom("FarthestPointSample", tflite::ops::custom::Register_FARTHEST_POINT_SAMPLE());
+  #AddCustom("FarthestPointSample", tflite::ops::custom::Register_FARTHEST_POINT_SAMPLE());
   
   AddCustom("GatherPoint", tflite::ops::custom::Register_GATHER_POINT());
   AddCustom("QueryBallPoint", tflite::ops::custom::Register_QUERY_BALL_POINT());
