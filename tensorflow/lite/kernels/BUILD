@@ -937,6 +937,8 @@ cc_library_with_tflite(
     deps = [
         ":builtin_op_kernels",
         ":builtin_ops_list",
+        "//tensorflow/lite/kernels/shim/test_op:sampling_op",
+        "//tensorflow/lite/kernels/shim/test_op:sampling_tflite_op",
         "//tensorflow/lite:tflite_with_xnnpack_optional",
         "//tensorflow/lite/core/c:common",
         "//tensorflow/lite/core/kernels:builtin_ops_all_linked",
@@ -959,6 +961,8 @@ cc_library_with_tflite(
     deps = [
         ":builtin_op_kernels",  # buildcleaner: keep
         ":builtin_ops_list",
+        "//tensorflow/lite/kernels/shim/test_op:sampling_op",
+        "//tensorflow/lite/kernels/shim/test_op:sampling_tflite_op",
         "//tensorflow/lite:mutable_op_resolver",
         "//tensorflow/lite:tflite_with_xnnpack_optional",
         "//tensorflow/lite/core/c:common",
