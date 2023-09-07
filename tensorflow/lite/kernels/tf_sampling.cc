@@ -127,7 +127,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 } // namespace gatherpoint
 
 
-/*
+#if 1
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   static TfLiteRegistration reg = {
       nullptr,
@@ -137,7 +137,7 @@ TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   };
   return &reg;
 }
-*/
+#endif
 
 TfLiteRegistration* Register_GATHER_POINT() {
   static TfLiteRegistration reg = {
