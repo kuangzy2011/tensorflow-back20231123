@@ -757,7 +757,6 @@ cc_library(
     copts = tflite_copts() + tf_opts_nortti_if_android() + EXTRA_EIGEN_COPTS,
     visibility = [
         "//tensorflow/lite/core/kernels:__subpackages__",
-        "//tensorflow/lite/kernels/shim:__subpackages__",
     ],
     deps = BUILTIN_KERNEL_DEPS + [
         "//tensorflow/lite/kernels/shim/test_op:sampling_op",
