@@ -9,6 +9,8 @@
 namespace tflite {
 namespace ops {
 namespace custom {
+
+#if 0
 namespace farthestpointsample {
 
 constexpr int kDataInputTensor = 0;
@@ -95,7 +97,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   //return kTfLiteError;
 }
 } // namespace farthestpointsample
-
+#endif
 
 namespace gatherpoint {
 
@@ -127,7 +129,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 } // namespace gatherpoint
 
 
-#if 1
+#if 0
 TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE() {
   static TfLiteRegistration reg = {
       nullptr,
