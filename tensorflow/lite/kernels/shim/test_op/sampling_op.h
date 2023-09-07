@@ -74,21 +74,25 @@ Outputs
 
   // Attributes declaration (syntax: https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Attrs() {
+    printf("[debug][shim][farthestpointsample][Attrs] ------------------1\n");
     return {absl::StrCat(kAttrName, ": int")};
   }
   // Input tensors declaration (syntax:
   // https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Inputs() {
+    printf("[debug][shim][farthestpointsample][Inputs] ------------------1\n");
     return {"inp: float32"};
   }
   // Output tensors declaration (syntax:
   // https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Outputs() {
+    printf("[debug][shim][farthestpointsample][Outputs] ------------------1\n");
     return {"out: int32"};
   }
 
   // Initializes the op
   absl::Status Init(InitContext* ctx) {
+    printf("[debug][shim][farthestpointsample][Init] ------------------1\n");
     SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
     if (npoint < 1) {
       return absl::InternalError(absl::StrCat(kAttrName, " should be >= 1"));
@@ -99,12 +103,14 @@ Outputs
 
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
+    printf("[debug][shim][farthestpointsample][Invoke] ------------------1\n");
 
     return absl::OkStatus();
   }
 
   // Shape inference
   static absl::Status ShapeInference(ShapeInferenceContext* ctx) {
+    printf("[debug][shim][farthestpointsample][ShapeInference] ------------------1\n");
 
     return absl::OkStatus();
   }
