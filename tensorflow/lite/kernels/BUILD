@@ -751,7 +751,8 @@ cc_library(
         "dequantize.h",
         "tf_sampling.h",
         "tf_grouping.h",
-        "tf_interpolate.h"
+        "tf_interpolate.h",
+        "//tensorflow/lite/kernels/shim/test_op/sampling_tflite_op.h"        
     ],
     compatible_with = get_compatible_with_portable(),
     copts = tflite_copts() + tf_opts_nortti_if_android() + EXTRA_EIGEN_COPTS,
