@@ -7,7 +7,10 @@ namespace tflite {
 namespace ops {
 namespace custom {
 
-//TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
+#if 1
+TfLiteRegistration* Register_FARTHEST_POINT_SAMPLE();
+#endif
+
 TfLiteRegistration* Register_GATHER_POINT();
 
 }  // namespace custom
