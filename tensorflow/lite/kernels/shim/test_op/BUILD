@@ -154,6 +154,7 @@ tf_cc_test(
 )
 
 
+#//[TODO:kuangzy]
 cc_library(
     name = "sampling_op",
     hdrs = ["sampling_op.h"],
@@ -165,6 +166,7 @@ cc_library(
     ],
 )
 
+#//[TODO:kuangzy]
 cc_library(
     name = "sampling_tflite_op",
     srcs = ["sampling_tflite_op.cc"],
