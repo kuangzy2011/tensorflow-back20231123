@@ -1,3 +1,4 @@
+//[TODO:kuangzy]
 // input: radius (1), nsample (1), xyz1 (b,n,3), xyz2 (b,m,3)
 // output: idx (b,m,nsample), pts_cnt (b,m)
 __global__ void query_ball_point_gpu(int b, int n, int m, float radius, int nsample, const float *xyz1, const float *xyz2, int *idx, int *pts_cnt) {
