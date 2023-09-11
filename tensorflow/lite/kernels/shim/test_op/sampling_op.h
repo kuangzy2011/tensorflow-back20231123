@@ -94,7 +94,7 @@ Outputs
   // Initializes the op
   absl::Status Init(InitContext* ctx) {
     SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
-    //printf("[debug][shim][farthestpointsample][Init] ------------------npoint %d\n", npoint);
+    LOG(INFO) << "[debug][shim][farthestpointsample][Init] ------------------npoint " << npoint;
     if (npoint < 1) {
       return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
     }
@@ -104,7 +104,7 @@ Outputs
 
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
-    //printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint %d\n", npoint);
+    LOG(INFO) << "[debug][shim][farthestpointsample][Invoke] ------------------npoint " << npoint;
 
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
         
@@ -116,7 +116,7 @@ Outputs
 
   // Shape inference
   static absl::Status ShapeInference(ShapeInferenceContext* ctx) {
-    //printf("[debug][shim][farthestpointsample][ShapeInference] ------------------npoint %d\n", npoint);
+    LOG(INFO) << "[debug][shim][farthestpointsample][ShapeInference] ------------------npoint " << npoint;
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
       
     // outpu0
