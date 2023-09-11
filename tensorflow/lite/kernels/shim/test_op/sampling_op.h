@@ -95,23 +95,32 @@ Outputs
   absl::Status Init(InitContext* ctx) {
     SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
     printf("[debug][shim][farthestpointsample][Init] ------------------npoint %d\n", npoint);
-    //if (npoint < 1) {
-    //  return absl::InternalError(absl::StrCat(kAttrName, " should be >= 1"));
-    //}
+    if (npoint < 1) {
+      return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
+    }
     
     return absl::OkStatus();
   }
 
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
-    printf("[debug][shim][farthestpointsample][Invoke] ------------------1\n");
+    printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint %d\n", npoint);
+
+    SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
+        
+    // output0 whose size is static
+    //SH_ASSIGN_OR_RETURN(auto output0_t, ctx->GetOutput(kOutput0, Shape({kOutput0Size})));
 
     return absl::OkStatus();
   }
 
   // Shape inference
   static absl::Status ShapeInference(ShapeInferenceContext* ctx) {
-    printf("[debug][shim][farthestpointsample][ShapeInference] ------------------1\n");
+    printf("[debug][shim][farthestpointsample][ShapeInference] ------------------npoint %d\n", npoint);
+    SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
+      
+    // outpu0
+    SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_t->Shape().Dim(0), npoint})));
 
     return absl::OkStatus();
   }
