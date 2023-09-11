@@ -93,7 +93,7 @@ Outputs
 
   // Initializes the op
   absl::Status Init(InitContext* ctx) {
-    ctx->GetAttr(kAttrName, &npoint);
+    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
     printf("[debug][shim][farthestpointsample][Init] ------------------npoint %d\n", npoint);
     //if (npoint < 1) {
     //  return absl::InternalError(absl::StrCat(kAttrName, " should be >= 1"));
