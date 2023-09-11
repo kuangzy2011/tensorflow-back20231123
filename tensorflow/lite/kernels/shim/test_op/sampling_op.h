@@ -39,7 +39,7 @@ class FarthestPointSample : public OpKernelShim<FarthestPointSample, Rt> {
   enum Attrs { kAttr0 = 0 };
   enum Inputs { kInput0 = 0 };
   enum Outputs { kOutput0 = 0};
-  int npoint;
+  int64_t npoint;
   std::string output2_suffix_;
   int64_t n_;
   static constexpr int kOutput0Size = 5;
