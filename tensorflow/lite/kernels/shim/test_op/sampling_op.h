@@ -39,10 +39,7 @@ class FarthestPointSample : public OpKernelShim<FarthestPointSample, Rt> {
   enum Attrs { kAttr0 = 0 };
   enum Inputs { kInput0 = 0 };
   enum Outputs { kOutput0 = 0};
-  int64_t npoint;
-  std::string output2_suffix_;
-  int64_t n_;
-  static constexpr int kOutput0Size = 5;
+  int npoint;
   static constexpr char kAttrName[] = "npoint";
 
  public:
@@ -75,27 +72,25 @@ Outputs
 
   // Attributes declaration (syntax: https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Attrs() {
-    printf("[debug][shim][farthestpointsample][Attrs] ------------------1\n");
     return {absl::StrCat(kAttrName, ": int")};
   }
   // Input tensors declaration (syntax:
   // https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Inputs() {
-    printf("[debug][shim][farthestpointsample][Inputs] ------------------1\n");
     return {"inp: float32"};
   }
   // Output tensors declaration (syntax:
   // https://www.tensorflow.org/guide/create_op)
   static std::vector<std::string> Outputs() {
-    printf("[debug][shim][farthestpointsample][Outputs] ------------------1\n");
     return {"out: int32"};
   }
 
   // Initializes the op
   absl::Status Init(InitContext* ctx) {
-    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
-    int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][Init] ------------------npoint2 %d\n", npoint2);
+    int64_t tmp_npoint = 0;
+    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &tmp_npoint));
+    npoint = tmp_npoint;
+    printf("[debug][shim][farthestpointsample][Init] ------------------npoint %d\n", npoint);
     if (npoint < 1) {
       return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
     }
@@ -105,33 +100,51 @@ Outputs
 
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
-    int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint2 %d\n", npoint2);
+    printf("[debug][shim][farthestpointsample][Invoke] 1------------------npoint %d\n", npoint);
 
+    // read input
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
-        
+    const auto input_str = input_t->template AsScalar<float32>();
+    Shape input_shape(input_t->Shape());
+    printf("[debug][shim][farthestpointsample][Invoke] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
+
     // output0 whose size is static
-    //SH_ASSIGN_OR_RETURN(auto output0_t, ctx->GetOutput(kOutput0, Shape({kOutput0Size})));
+    SH_ASSIGN_OR_RETURN(auto output_t, ctx->GetOutput(kOutput0, Shape({input_shape.Dim(0), npoint})));
+    //auto output0 = output0_t->template As<int32_t, 1>();
 
     return absl::OkStatus();
   }
 
   // Shape inference
   static absl::Status ShapeInference(ShapeInferenceContext* ctx) {
-    int64_t npoint = 0;
-    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
-    int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][ShapeInference] 1 ------------------npoint2 %d\n", npoint2);
+    int64_t tmp_npoint = 0;
+
+    //attr
+    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &tmp_npoint));
+    int npoint = tmp_npoint;
+    printf("[debug][shim][farthestpointsample][ShapeInference] 1 ------------------npoint %d\n", npoint);
     if (npoint < 1) {
       return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
     }
-    
-    //Shape input_shape(ctx->GetInputShape(kInput0));
+
+    if (1 != ctx->NumInputs()) {
+      return absl::InternalError(absl::StrCat("NumInputs: ctx->NumInputs(), " != 1"));
+    }
+
+    if (1 != ctx->NumOutputs()) {
+      return absl::InternalError(absl::StrCat("NumOutputs: ctx->NumOutputs(), " != 1"));
+    }
+
+    //input shape
     SH_ASSIGN_OR_RETURN(const auto input_shape, ctx->GetInputShape(kInput0));
+    if(input_shape.Rank() != 3 || input_shape.Dim(2) != 3) {
+        return absl::InternalError(absl::StrCat("FarthestPointSample expects (batch_size,num_points,3) inp shape"));
+    }
 
     printf("[debug][shim][farthestpointsample][ShapeInference] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
+
     // outpu0
-    SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_shape.Dim(0), npoint2})));
+    SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_shape.Dim(0), npoint})));
 
     return absl::OkStatus();
   }
