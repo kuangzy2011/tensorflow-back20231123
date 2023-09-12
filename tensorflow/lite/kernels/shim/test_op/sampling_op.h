@@ -100,15 +100,33 @@ Outputs
 
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
+    if (1 != ctx->NumInputs()) {
+      return absl::InternalError(absl::StrCat("NumInputs:", ctx->NumInputs(), " != 1"));
+    }
+
+    if (1 != ctx->NumOutputs()) {
+      return absl::InternalError(absl::StrCat("NumOutputs:", ctx->NumOutputs(), " != 1"));
+    }
+      
     // read input
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
-    const auto input_str = input_t->template AsScalar<float_t>();
+    const auto input_str = input_t->template As<float_t, 1>();
     Shape input_shape(input_t->Shape());
+    //input shape
+    SH_ASSIGN_OR_RETURN(const auto input_shape, ctx->GetInputShape(kInput0));
+    if(input_shape.Rank() != 3 || input_shape.Dim(2) != 3) {
+        return absl::InternalError(absl::StrCat("FarthestPointSample expects (batch_size,num_points,3) inp shape"));
+    }
     printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint %d, input shape(%d, %d, %d)\n", npoint, input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
+
+    int b = input_shape.Dim(0);
+    int n = input_shape.Dim(1);
 
     // output0 whose size is static
     SH_ASSIGN_OR_RETURN(auto output_t, ctx->GetOutput(kOutput0, Shape({input_shape.Dim(0), npoint})));
     //auto output0 = output0_t->template As<int32_t, 1>();
+
+        
 
     return absl::OkStatus();
   }
