@@ -128,11 +128,11 @@ Outputs
     }
 
     if (1 != ctx->NumInputs()) {
-      return absl::InternalError(absl::StrCat("NumInputs: ctx->NumInputs(), " != 1"));
+      return absl::InternalError(absl::StrCat("NumInputs:", ctx->NumInputs(), " != 1"));
     }
 
     if (1 != ctx->NumOutputs()) {
-      return absl::InternalError(absl::StrCat("NumOutputs: ctx->NumOutputs(), " != 1"));
+      return absl::InternalError(absl::StrCat("NumOutputs:", ctx->NumOutputs(), " != 1"));
     }
 
     //input shape
