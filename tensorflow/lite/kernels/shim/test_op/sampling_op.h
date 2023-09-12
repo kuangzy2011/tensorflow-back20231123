@@ -104,7 +104,7 @@ Outputs
 
     // read input
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
-    const auto input_str = input_t->template AsScalar<float32>();
+    const auto input_str = input_t->template AsScalar<float_t>();
     Shape input_shape(input_t->Shape());
     printf("[debug][shim][farthestpointsample][Invoke] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
 
