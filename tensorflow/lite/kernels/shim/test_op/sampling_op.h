@@ -139,7 +139,7 @@ Outputs
         return absl::InternalError(absl::StrCat("FarthestPointSample expects (batch_size,num_points,3) inp shape"));
     }
 
-    printf("[debug][shim][farthestpointsample][ShapeInference] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
+    printf("[debug][shim][farthestpointsample][ShapeInference] 2 ------------------npoint %d, input shape(%d, %d, %d)\n", npoint, input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
 
     // outpu0
     SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_shape.Dim(0), npoint})));
