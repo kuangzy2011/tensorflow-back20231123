@@ -126,8 +126,9 @@ Outputs
       return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
     }
     
-    Shape input_shape(ctx->GetInputShape(kInput0));
-      
+    //Shape input_shape(ctx->GetInputShape(kInput0));
+    SH_ASSIGN_OR_RETURN(const auto input_shape, ctx->GetInputShape(kInput0));
+
     printf("[debug][shim][farthestpointsample][ShapeInference] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
     // outpu0
     SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_shape.Dim(0), npoint2})));
