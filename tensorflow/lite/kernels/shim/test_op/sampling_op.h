@@ -95,15 +95,10 @@ Outputs
   absl::Status Init(InitContext* ctx) {
     SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
     int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][ShapeInference2] ------------------npoint2 %d\n", npoint2);
+    printf("[debug][shim][farthestpointsample][Init] ------------------npoint2 %d\n", npoint2);
     if (npoint < 1) {
       return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
     }
-    
-    SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
-      
-    // outpu0
-    SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_t->Shape().Dim(0), npoint2})));
 
     return absl::OkStatus();
   }
@@ -111,7 +106,7 @@ Outputs
   // Runs the operation
   absl::Status Invoke(InvokeContext* ctx) {
     int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][ShapeInference2] ------------------npoint2 %d\n", npoint2);
+    printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint2 %d\n", npoint2);
 
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
         
@@ -123,8 +118,19 @@ Outputs
 
   // Shape inference
   static absl::Status ShapeInference(ShapeInferenceContext* ctx) {
-    //int npoint2 = npoint;
-    printf("[debug][shim][farthestpointsample][ShapeInference] ------------------\n");
+    int64_t npoint = 0;
+    SH_RETURN_IF_ERROR(ctx->GetAttr(kAttrName, &npoint));
+    int npoint2 = npoint;
+    printf("[debug][shim][farthestpointsample][ShapeInference] 1 ------------------npoint2 %d\n", npoint2);
+    if (npoint < 1) {
+      return absl::InternalError(absl::StrCat(kAttrName, " should be > 0"));
+    }
+    
+    Shape input_shape(ctx->GetInputShape(kInput0));
+      
+    printf("[debug][shim][farthestpointsample][ShapeInference] 2 ------------------input shape(%d, %d, %d)\n", input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
+    // outpu0
+    SH_RETURN_IF_ERROR(ctx->SetOutputShape(kOutput0, Shape({input_shape.Dim(0), npoint2})));
 
     return absl::OkStatus();
   }
