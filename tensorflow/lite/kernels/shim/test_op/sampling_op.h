@@ -110,7 +110,12 @@ Outputs
       
     // read input
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
-    const auto input_str = input_t->template As<float_t, 1>();
+    const auto input_ptr = input_t->template As<float_t, 3>();//dim 3
+    auto input_data = input_t->Data<float>();
+    for(int i = 0; i < 6; i++)
+    {
+        printf(" >[%d] %.6f\n", i, input_data[i]);
+    }
         
     //input shape
     Shape input_shape(input_t->Shape());
