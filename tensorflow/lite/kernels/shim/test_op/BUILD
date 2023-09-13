@@ -162,7 +162,6 @@ cc_library(
         "//tensorflow/lite/kernels/shim:op_kernel",
         "//tensorflow/lite/kernels/shim:status_macros",
         "//tensorflow/lite/kernels/shim:tflite_tensor_view",
-        "//tensorflow/lite/kernels/shim:test_util",
         "//tensorflow/lite:framework",
         #"//tensorflow/lite:string_util",
         #"//tensorflow/lite/core:framework_stable",
