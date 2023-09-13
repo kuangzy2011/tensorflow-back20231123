@@ -111,10 +111,10 @@ Outputs
     // read input
     SH_ASSIGN_OR_RETURN(const auto input_t, ctx->GetInput(kInput0));
     const auto input_str = input_t->template As<float_t, 1>();
-    //Shape input_shape(input_t->Shape());
         
     //input shape
-    SH_ASSIGN_OR_RETURN(const auto input_shape, ctx->GetInputShape(kInput0));
+    Shape input_shape(input_t->Shape());
+    //SH_ASSIGN_OR_RETURN(const auto input_shape, ctx->GetInputShape(kInput0));
     if(input_shape.Rank() != 3 || input_shape.Dim(2) != 3) {
         return absl::InternalError(absl::StrCat("FarthestPointSample expects (batch_size,num_points,3) inp shape"));
     }
