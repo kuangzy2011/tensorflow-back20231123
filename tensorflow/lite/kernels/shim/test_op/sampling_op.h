@@ -113,10 +113,14 @@ Outputs
     const auto input_ptr = input_t->template As<float_t, 3>();//dim 3
     //auto input_data = input_t->Data<float>();
     auto input_data = input_t->template Data<float_t>().data();
+    /*
     for(int i = 0; i < 6; i++)
     {
         printf(" >[%d] %.6f\n", i, input_data[i]);
     }
+    */
+    const float* inp = input_data;
+
         
     //input shape
     Shape input_shape(input_t->Shape());
@@ -126,14 +130,29 @@ Outputs
     }
     printf("[debug][shim][farthestpointsample][Invoke] ------------------npoint %d, input shape(%d, %d, %d)\n", npoint, input_shape.Dim(0), input_shape.Dim(1), input_shape.Dim(2));
 
+    int m = npoint;
     int b = input_shape.Dim(0);
     int n = input_shape.Dim(1);
 
     // output0 whose size is static
-    SH_ASSIGN_OR_RETURN(auto output_t, ctx->GetOutput(kOutput0, Shape({input_shape.Dim(0), npoint})));
-    //auto output0 = output0_t->template As<int32_t, 1>();
-
+    SH_ASSIGN_OR_RETURN(auto output_t, ctx->GetOutput(kOutput0, Shape({b, m})));
+    auto output_ptr = output_t->template As<int32_t, 2>();
+    auto out = output_t->template Data<int32_t>().data();
         
+    ::tflite::Interpreter interpreter;
+    interpreter.AddTensors(1);
+    interpreter.AllocateTensors();
+    auto* tflite_tensor = interpreter.tensor(0);
+    ReallocDynamicTensor<float_t>({32, n}, tflite_tensor);
+    tflite_tensor->name = "test_float";
+    auto owned_tflite_tensor = UniqueTfLiteTensor(tflite_tensor);
+    
+    auto t_or = TensorView::New(tflite_tensor);
+    ASSERT_TRUE(t_or.ok()) << t_or.status();
+    auto& t = t_or.value();
+    
+    auto temp = t.Data<float_t>();
+
 
     return absl::OkStatus();
   }
@@ -178,3 +197,4 @@ Outputs
 }  // namespace tflite
 
 #endif  // TENSORFLOW_LITE_KERNELS_SHIM_TEST_OP_SAMPLING_OP_H_
+
