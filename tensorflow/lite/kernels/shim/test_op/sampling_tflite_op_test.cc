@@ -29,7 +29,7 @@ namespace ops {
 namespace custom {
 namespace {
 
-class FarthestPointSampleModel : public FarthestPointSampleModel {
+class FarthestPointSampleModel : public SingleOpModel {
  public:
   // Builds the op model and feeds in inputs, ready to invoke.
   FarthestPointSampleModel(const std::vector<uint8_t>& op_options,
