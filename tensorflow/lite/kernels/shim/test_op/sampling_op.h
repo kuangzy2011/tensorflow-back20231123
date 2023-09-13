@@ -28,6 +28,7 @@ limitations under the License.
 #include "tensorflow/lite/kernels/shim/status_macros.h"
 //#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
 #include "tensorflow/lite/interpreter.h"
+#include "tensorflow/lite/kernels/shim/test_util.h"
 
 namespace tflite {
 namespace shim {
