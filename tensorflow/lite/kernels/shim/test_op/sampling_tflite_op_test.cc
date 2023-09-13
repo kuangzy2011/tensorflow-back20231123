@@ -35,25 +35,26 @@ class FarthestPointSampleModel : public FarthestPointSampleModel {
   FarthestPointSampleModel(const std::vector<uint8_t>& op_options,
                 const std::vector<tflite::TensorType>& input_types,
                 const std::vector<std::vector<int>>& input_shapes,
-                const std::string& input0,
-                const std::vector<std::vector<int64_t>>& input1,
+                const std::vector<std::vector<float_t>>& input,
                 const std::vector<tflite::TensorType>& output_types) {
     // Define inputs.
     std::vector<int> input_idx;
     for (const auto input_type : input_types) {
       input_idx.push_back(AddInput(input_type));
     }
+    
     // Define outputs.
     for (const auto output_type : output_types) {
       output_idx_.push_back(AddOutput(output_type));
     }
+    
     // Build the interpreter.
-    SetCustomOp(OpName_SIMPLE_OP(), op_options, Register_SIMPLE_OP);
+    SetCustomOp(OpName_FARTHEST_POINT_SAMPLE(), op_options, Register_FARTHEST_POINT_SAMPLE);
     BuildInterpreter(input_shapes);
+    
     // Populate inputs.
-    PopulateStringTensor(input_idx[0], {input0});
-    for (int i = 0; i < input1.size(); ++i) {
-      PopulateTensor(input_idx[1 + i], input1[i]);
+    for (int i = 0; i < input.size(); ++i) {
+      PopulateTensor(input_idx[i], input[i]);
     }
   }
 
@@ -71,30 +72,31 @@ class FarthestPointSampleModel : public FarthestPointSampleModel {
   std::vector<int> output_idx_;
 };
 
-TEST(SimpleOpModel, OutputSize_5_N_2) {
-  // Test input
+//test 1
+TEST(FarthestPointSampleModel, OutputSize_5_N_2) {
+  //attr
   flexbuffers::Builder builder;
   builder.Map([&]() {
-    builder.Int("output1_size", 5);
-    builder.String("output2_suffix", "foo");
-    builder.Int("N", 2);
+    builder.Int("npoint", 1024);
   });
   builder.Finish();
-  std::vector<std::vector<int>> input_shapes = {{}, {}, {2}};
-  std::vector<tflite::TensorType> input_types = {tflite::TensorType_STRING,
-                                                 tflite::TensorType_INT64,
-                                                 tflite::TensorType_INT64};
-  std::vector<tflite::TensorType> output_types = {
-      tflite::TensorType_INT32, tflite::TensorType_FLOAT32,
-      tflite::TensorType_STRING, tflite::TensorType_INT64,
-      tflite::TensorType_INT64};
-  const std::string input0 = "abc";
-  const std::vector<std::vector<int64_t>> input1 = {{123}, {456, 789}};
+
+  std::vector<int> input_shapes = {1, 1071, 3};
+  std::vector<tflite::TensorType> input_types = {tflite::TensorType_FLOAT32};
+  std::vector<tflite::TensorType> output_types = {tflite::TensorType_INT32};
+  const std::vector<float_t> input = {};
+  for(int i = 0; i < 1*1073*3; i++)
+  {
+    input[i] = 0.0;
+  }
+
   // Run the op
-  SimpleOpModel m(/*op_options=*/builder.GetBuffer(), input_types, input_shapes,
-                  input0, input1, output_types);
+  FarthestPointSampleModel m(builder.GetBuffer(), input_types, input_shapes, input, output_types);
+
   ASSERT_EQ(m.Invoke(), kTfLiteOk);
+
   // Assertions
+  /*
   EXPECT_THAT(m.GetOutput<int>(0), testing::ElementsAre(0, 1, 2, 3, 4));
   EXPECT_THAT(m.GetOutput<float>(1),
               testing::ElementsAre(0, 0.5, 1.0, 1.5, 2.0));
@@ -104,6 +106,7 @@ TEST(SimpleOpModel, OutputSize_5_N_2) {
   EXPECT_THAT(m.GetOutputShape(3), testing::ElementsAre());
   EXPECT_THAT(m.GetOutput<int64_t>(4), testing::ElementsAre(457, 790));
   EXPECT_THAT(m.GetOutputShape(4), testing::ElementsAre(2));
+  */
 }
 
 
@@ -111,3 +114,4 @@ TEST(SimpleOpModel, OutputSize_5_N_2) {
 }  // namespace custom
 }  // namespace ops
 }  // namespace tflite
+
