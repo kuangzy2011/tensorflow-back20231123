@@ -32,7 +32,7 @@ namespace {
 class FarthestPointSampleModel : public FarthestPointSampleModel {
  public:
   // Builds the op model and feeds in inputs, ready to invoke.
-  SimpleOpModel(const std::vector<uint8_t>& op_options,
+  FarthestPointSampleModel(const std::vector<uint8_t>& op_options,
                 const std::vector<tflite::TensorType>& input_types,
                 const std::vector<std::vector<int>>& input_shapes,
                 const std::string& input0,
