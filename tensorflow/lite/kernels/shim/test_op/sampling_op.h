@@ -26,8 +26,8 @@ limitations under the License.
 #include "absl/strings/string_view.h"
 #include "tensorflow/lite/kernels/shim/op_kernel.h"
 #include "tensorflow/lite/kernels/shim/status_macros.h"
-#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
-#include "tensorflow/lite/core/interpreter.h"
+//#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
+//#include "tensorflow/lite/core/interpreter.h"
 
 namespace tflite {
 namespace shim {
@@ -140,7 +140,8 @@ Outputs
     SH_ASSIGN_OR_RETURN(auto output_t, ctx->GetOutput(kOutput0, Shape({b, m})));
     auto output_ptr = output_t->template As<int32_t, 2>();
     auto out = output_t->template Data<int32_t>().data();
-        
+
+    /*
     ::tflite::Interpreter interpreter;
     interpreter.AddTensors(1);
     interpreter.AllocateTensors();
@@ -154,6 +155,11 @@ Outputs
     auto& t = t_or.value();
     
     auto temp = t.Data<float_t>();
+    */
+
+    TfLiteTensor tflite_tensor;
+    auto t = TensorView::New(&tflite_tensor);
+    auto temp = t.Data<int32>();
 
 
     return absl::OkStatus();
