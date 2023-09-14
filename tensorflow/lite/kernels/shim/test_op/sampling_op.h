@@ -28,6 +28,7 @@ limitations under the License.
 #include "tensorflow/lite/kernels/shim/status_macros.h"
 
 #include "tensorflow/lite/kernels/shim/tensor_view.h"
+#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
 #include "tensorflow/lite/type_to_tflitetype.h"
 #include "tensorflow/lite/core/c/common.h"
 
