@@ -26,12 +26,33 @@ limitations under the License.
 #include "absl/strings/string_view.h"
 #include "tensorflow/lite/kernels/shim/op_kernel.h"
 #include "tensorflow/lite/kernels/shim/status_macros.h"
+//#include "tensorflow/lite/kernels/shim/interpreter.h"
 
 namespace tflite {
+
+template <typename T>
+void ReallocDynamicTensor(const std::initializer_list<int> shape, TfLiteTensor* tensor) {
+  TfLiteTensorFree(tensor);
+  tensor->allocation_type = kTfLiteDynamic;
+  tensor->type = typeToTfLiteType<T>();
+    
+  // Populate Shape
+  TfLiteIntArray* shape_arr = TfLiteIntArrayCreate(shape.size());
+  int i = 0;
+  const std::size_t num_total = NumTotalFromShape(shape);
+  for (const int dim : shape) shape_arr->data[i++] = dim;
+  tensor->dims = shape_arr;
+  if (tensor->type != kTfLiteString) {
+    TfLiteTensorRealloc(num_total * sizeof(T), tensor);
+  }
+}
+
+
 namespace shim {
 
 // A simple operation for demonstration and testing purposes.
 // See the kDoc member for documentation.
+
 
 template <Runtime Rt>
 class FarthestPointSample : public OpKernelShim<FarthestPointSample, Rt> {
