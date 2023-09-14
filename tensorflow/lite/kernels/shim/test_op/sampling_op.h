@@ -26,9 +26,11 @@ limitations under the License.
 #include "absl/strings/string_view.h"
 #include "tensorflow/lite/kernels/shim/op_kernel.h"
 #include "tensorflow/lite/kernels/shim/status_macros.h"
-//#include "tensorflow/lite/kernels/shim/interpreter.h"
+
 #include "tensorflow/lite/type_to_tflitetype.h"
 #include "tensorflow/lite/core/c/common.h"
+
+#include "tensorflow/lite/kernels/shim/interpreter.h"
 
 namespace tflite {
 
@@ -172,26 +174,21 @@ Outputs
     auto output_ptr = output_t->template As<int32_t, 2>();
     auto out = output_t->template Data<int32_t>().data();
 
-    /*
+    
     ::tflite::Interpreter interpreter;
     interpreter.AddTensors(1);
     interpreter.AllocateTensors();
     auto* tflite_tensor = interpreter.tensor(0);
     ReallocDynamicTensor<float_t>({32, n}, tflite_tensor);
     tflite_tensor->name = "test_float";
-    auto owned_tflite_tensor = UniqueTfLiteTensor(tflite_tensor);
     
     auto t_or = TensorView::New(tflite_tensor);
     ASSERT_TRUE(t_or.ok()) << t_or.status();
     auto& t = t_or.value();
     
     auto temp = t.Data<float_t>();
-    */
-    /*
-    TfLiteTensor tflite_tensor;
-    auto t = TensorView::New(&tflite_tensor);
-    auto temp = t.Data<int32>();
-    */
+    
+
 
     return absl::OkStatus();
   }
