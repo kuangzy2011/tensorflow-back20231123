@@ -30,7 +30,7 @@ limitations under the License.
 #include "tensorflow/lite/type_to_tflitetype.h"
 #include "tensorflow/lite/core/c/common.h"
 
-#include "tensorflow/lite/kernels/shim/interpreter.h"
+#include "tensorflow/lite/interpreter.h"
 
 namespace tflite {
 
