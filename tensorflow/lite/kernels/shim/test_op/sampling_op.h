@@ -32,6 +32,16 @@ limitations under the License.
 
 namespace tflite {
 
+size_t NumTotalFromShape(const std::initializer_list<int>& shape) {
+  size_t num_total;
+  if (shape.size() > 0)
+    num_total = 1;
+  else
+    num_total = 0;
+  for (const int dim : shape) num_total *= dim;
+  return num_total;
+}
+
 template <typename T>
 void ReallocDynamicTensor(const std::initializer_list<int> shape, TfLiteTensor* tensor) {
   TfLiteTensorFree(tensor);
