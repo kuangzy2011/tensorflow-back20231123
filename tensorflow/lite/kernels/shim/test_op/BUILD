@@ -161,6 +161,9 @@ cc_library(
     deps = [
         "//tensorflow/lite/kernels/shim:op_kernel",
         "//tensorflow/lite/kernels/shim:status_macros",
+        "//tensorflow/lite:type_to_tflitetype",
+        "//tensorflow/lite/core/c:common",
+        "//tensorflow/lite/kernels/internal:compatibility",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/strings",
     ],
