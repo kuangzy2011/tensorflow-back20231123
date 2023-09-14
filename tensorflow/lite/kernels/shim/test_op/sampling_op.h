@@ -27,6 +27,8 @@ limitations under the License.
 #include "tensorflow/lite/kernels/shim/op_kernel.h"
 #include "tensorflow/lite/kernels/shim/status_macros.h"
 //#include "tensorflow/lite/kernels/shim/interpreter.h"
+#include "tensorflow/lite/type_to_tflitetype.h"
+#include "tensorflow/lite/core/c/common.h"
 
 namespace tflite {
 
