@@ -179,7 +179,7 @@ Outputs
     auto output_ptr = output_t->template As<int32_t, 2>();
     auto out = output_t->template Data<int32_t>().data();
 
-    /*
+#ifdef COMPILE_TFLITE_TENSOR
     ::tflite::Interpreter interpreter;
     interpreter.AddTensors(1);
     interpreter.AllocateTensors();
@@ -192,7 +192,7 @@ Outputs
     auto& t = t_or.value();
     
     auto temp = t.Data<float_t>();
-    */
+#endif
 
 
     return absl::OkStatus();
