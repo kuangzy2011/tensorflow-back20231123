@@ -28,15 +28,15 @@ limitations under the License.
 #include "tensorflow/lite/kernels/shim/status_macros.h"
 
 //#include "tensorflow/lite/kernels/shim/tensor_view.h"
-//#include "tensorflow/lite/type_to_tflitetype.h"
 //#include "tensorflow/lite/core/c/common.h"
-//#include "tensorflow/lite/interpreter.h"
 
-//#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
+//#include "tensorflow/lite/type_to_tflitetype.h"
+#include "tensorflow/lite/interpreter.h"
+#include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
 
 namespace tflite {
 
-/*
+
 size_t NumTotalFromShape(const std::initializer_list<int>& shape) {
   size_t num_total;
   if (shape.size() > 0)
@@ -63,7 +63,7 @@ void ReallocDynamicTensor(const std::initializer_list<int> shape, TfLiteTensor* 
     TfLiteTensorRealloc(num_total * sizeof(T), tensor);
   }
 }
-*/
+
 
 namespace shim {
 
