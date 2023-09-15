@@ -181,18 +181,4 @@ cc_library(
     ],
 )
 
-#//[TODO:kuangzy]
-cc_test(
-    name = "sampling_tflite_op_test",
-    srcs = ["sampling_tflite_op_test.cc"],
-    deps = [
-        ":sampling_tflite_op",
-        "//tensorflow/core/platform:tstring",
-        "//tensorflow/lite/core/c:common",
-        "//tensorflow/lite/kernels:test_util",
-        "@com_google_googletest//:gtest_main",
-        "@flatbuffers",
-    ],
-)
-
 tflite_portable_test_suite()
