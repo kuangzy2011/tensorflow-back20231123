@@ -760,7 +760,7 @@ cc_library(
         "//tensorflow/lite/core/kernels:__subpackages__",
     ],
     deps = BUILTIN_KERNEL_DEPS + [
-        "//tensorflow/lite/kernels/shim/test_op:sampling_op",
+        #"//tensorflow/lite/kernels/shim/test_op:sampling_op",
         "//tensorflow/lite/kernels/shim/test_op:sampling_tflite_op",
         ":variable_op_kernels",
         "@fft2d",
