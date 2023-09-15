@@ -193,7 +193,7 @@ Outputs
     
     auto temp = t.Data<float_t>();
 
-    farthestpointsamplingLauncher(b,n,m,inp,temp,out);
+    //farthestpointsamplingLauncher(b,n,m,inp,temp,out);
 
 #endif
 
