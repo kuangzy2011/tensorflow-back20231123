@@ -27,15 +27,18 @@ limitations under the License.
 #include "tensorflow/lite/kernels/shim/op_kernel.h"
 #include "tensorflow/lite/kernels/shim/status_macros.h"
 
+#define COMPILE_TFLITE_TENSOR 1
+
+#ifdef COMPILE_TFLITE_TENSOR
 #include "tensorflow/lite/core/interpreter.h"
 #include "tensorflow/lite/kernels/shim/tflite_tensor_view.h"
 #include "tensorflow/lite/string_util.h"
 #include "tensorflow/lite/core/c/common.h"
 #include "tensorflow/lite/type_to_tflitetype.h"
-
+#endif
 namespace tflite {
 
-#if 1
+#ifdef COMPILE_TFLITE_TENSOR
 size_t NumTotalFromShape(const std::initializer_list<int>& shape) {
   size_t num_total;
   if (shape.size() > 0)
