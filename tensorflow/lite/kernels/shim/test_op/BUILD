@@ -181,6 +181,11 @@ cc_library(
         "//tensorflow/lite:mutable_op_resolver",
         "//tensorflow/lite/core/c:common",
         "//tensorflow/lite/kernels/shim:tflite_op_shim",
+        "//tensorflow/lite/kernels/shim:tensor_view",
+        "//tensorflow/lite/kernels/shim:tflite_tensor_view",
+        "//tensorflow/lite:type_to_tflitetype",
+        "//tensorflow/lite/core/c:common",
+        "//tensorflow/lite/kernels/internal:compatibility",
     ],
 )
 
