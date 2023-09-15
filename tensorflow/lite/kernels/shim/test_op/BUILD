@@ -155,7 +155,7 @@ tf_cc_test(
 
 
 #//[TODO:kuangzy]
-cc_library(
+tf_kernel_library(
     name = "sampling_op",
     hdrs = ["sampling_op.h"],
     gpu_srcs = ["tf_sampling_gpu.cc"],
