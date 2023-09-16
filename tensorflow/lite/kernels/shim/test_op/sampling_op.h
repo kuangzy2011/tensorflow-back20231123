@@ -192,11 +192,12 @@ Outputs
     
     auto t_or = TensorView::New(tflite_tensor);
     //ASSERT_TRUE(t_or.ok()) << t_or.status();
-    auto& t = t_or.value();
-    
+    //auto& t = t_or.value();
+    auto t = std::move(t_or.value());
+
     auto temp = t.Data<float_t>();
 
-    farthestpointsamplingLauncher(b,n,m,inp,temp,out);
+    farthestpointsamplingLauncher(b, n, m, inp, temp,out);
 
 #endif
 
