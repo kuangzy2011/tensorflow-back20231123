@@ -65,6 +65,9 @@ void ReallocDynamicTensor(const std::initializer_list<int> shape, TfLiteTensor* 
     TfLiteTensorRealloc(num_total * sizeof(T), tensor);
   }
 }
+
+extern void farthestpointsamplingLauncher(int b,int n,int m,const float * inp,float * temp,int * out);
+
 #endif
 
 namespace shim {
