@@ -183,6 +183,7 @@ Outputs
     auto out = output_t->template Data<int32_t>().data();
 
 #ifdef COMPILE_TFLITE_TENSOR
+#if 0
     ::tflite::Interpreter interpreter;
     interpreter.AddTensors(1);
     interpreter.AllocateTensors();
@@ -196,8 +197,10 @@ Outputs
     auto t = std::move(t_or.value());
 
     auto temp = t.Data<float_t>();
-
-    farthestpointsamplingLauncher(b, n, m, inp, temp,out);
+#else
+    float temp[32 * n] = {{0.0}};
+#endif
+    farthestpointsamplingLauncher(b, n, m, inp, temp, out);
 
 #endif
 
