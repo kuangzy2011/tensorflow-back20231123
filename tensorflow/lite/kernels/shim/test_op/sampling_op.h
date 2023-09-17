@@ -197,7 +197,8 @@ Outputs
     auto t = std::move(t_or.value());
 
     auto temp1 = t.Data<float_t>();
-    float *temp = (float *)temp1.data();
+    //float *temp = (float *)temp1.data();
+    float *temp = temp1.data();
 #else
     float temp[32 * n] = {{0.0}};
 #endif
