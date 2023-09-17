@@ -200,7 +200,7 @@ Outputs
 #else
     float temp[32 * n] = {{0.0}};
 #endif
-    farthestpointsamplingLauncher(b, n, m, inp, temp, out);
+    //farthestpointsamplingLauncher(b, n, m, inp, temp, out);
 
 #endif
 
