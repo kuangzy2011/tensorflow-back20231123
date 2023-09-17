@@ -183,7 +183,7 @@ Outputs
     auto out = output_t->template Data<int32_t>().data();
 
 #ifdef COMPILE_TFLITE_TENSOR
-#if 0
+#if 1
     ::tflite::Interpreter interpreter;
     interpreter.AddTensors(1);
     interpreter.AllocateTensors();
@@ -196,7 +196,8 @@ Outputs
     //auto& t = t_or.value();
     auto t = std::move(t_or.value());
 
-    auto temp = t.Data<float_t>();
+    auto temp1 = t.Data<float_t>();
+    float *temp = (float *)temp1.data();
 #else
     float temp[32 * n] = {{0.0}};
 #endif
