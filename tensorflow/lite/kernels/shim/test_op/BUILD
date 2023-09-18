@@ -177,7 +177,7 @@ tf_custom_op_library(
 )
 
 #//[TODO:kuangzy]
-cc_library(
+tf_custom_op_library(
     name = "sampling_tflite_op",
     srcs = ["sampling_tflite_op.cc"],
     hdrs = ["sampling_tflite_op.h"],
