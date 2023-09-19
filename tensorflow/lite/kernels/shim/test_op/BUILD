@@ -157,8 +157,8 @@ tf_cc_test(
 
 
 #//[TODO:kuangzy]
-#tf_kernel_library(
-tf_custom_op_library(
+#tf_custom_op_library(
+tf_kernel_library(
     name = "sampling_op",
     hdrs = ["sampling_op.h"],
     gpu_srcs = ["tf_sampling_gpu.cu.cc"],
@@ -179,7 +179,8 @@ tf_custom_op_library(
 )
 
 #//[TODO:kuangzy]
-cc_library(
+#cc_library(
+tf_kernel_library(
     name = "sampling_tflite_op",
     srcs = ["sampling_tflite_op.cc"],
     hdrs = ["sampling_tflite_op.h"],
