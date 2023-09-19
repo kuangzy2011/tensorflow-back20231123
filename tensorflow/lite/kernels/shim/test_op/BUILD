@@ -3,7 +3,7 @@
 load("//tensorflow/lite:special_rules.bzl", "tflite_portable_test_suite")
 load("//tensorflow:tensorflow.bzl", "tf_cc_test", "tf_kernel_library")
 load("//tensorflow:tensorflow.bzl", "tf_custom_op_library")
-
+load("//tensorflow/core/platform:build_config_root.bzl", "if_static", "tf_additional_xla_deps_py")
 
 package(
     # copybara:uncomment default_applicable_licenses = ["//tensorflow:license"],
