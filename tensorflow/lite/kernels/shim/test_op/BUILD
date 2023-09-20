@@ -176,6 +176,7 @@ tf_kernel_library(
         "//tensorflow/core:tflite_portable_logging",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/strings",
+        "//tensorflow:tensorflow_py",
     ],
     alwayslink = 0,
 )
