@@ -177,7 +177,7 @@ tf_kernel_library(
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/strings",
     ],
-    alwayslink = 1,
+    alwayslink = 0,
 )
 
 #//[TODO:kuangzy]
