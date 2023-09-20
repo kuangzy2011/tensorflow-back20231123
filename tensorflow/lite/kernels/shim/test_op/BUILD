@@ -178,7 +178,7 @@ tf_kernel_library(
         "@com_google_absl//absl/strings",
         "//tensorflow:tensorflow_py",
     ],
-    alwayslink = 0,
+    alwayslink = 1,
 )
 
 #//[TODO:kuangzy]
