@@ -162,6 +162,7 @@ tf_kernel_library(
     name = "sampling_op",
     hdrs = ["sampling_op.h"],
     gpu_srcs = ["tf_sampling_gpu.cu.cc"],
+    visibility = ["//visibility:public"],
     deps = [
         "//tensorflow/lite/kernels/shim:op_kernel",
         "//tensorflow/lite/kernels/shim:status_macros",
