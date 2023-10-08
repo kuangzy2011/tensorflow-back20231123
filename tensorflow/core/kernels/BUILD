@@ -8065,20 +8065,6 @@ tf_kernel_library(
     deps = [
         "//tensorflow/core:framework",
         "//tensorflow/core:lib",
-        "//tensorflow/core/kernels:tf_sampling"
     ],
 )
 
-
-tf_kernel_library(
-    name = "tf_sampling",
-    srcs = ["tf_sampling.cc"],
-    gpu_srcs = [
-        "tf_sampling_g.cu.cc",
-    ],
-    deps = [
-        "//tensorflow/core:framework",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:protos_all_cc",
-    ],
-)
